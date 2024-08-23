@@ -20,7 +20,9 @@ const server = http.createServer((req, res) => {
     else if(req.url === "/file-write"){
         fs.writeFile("demo.txt", "hello world",(err)=>{
             if(err){
-                console.log(err);
+                res.writeHead(500,{"Content-Type": "text/plain"});
+                res.write("Something went wrong");
+                res.end();
             }
             else{
                 res.writeHead(200, {"Content-Type": "text/plain"});
